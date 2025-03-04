@@ -1,88 +1,94 @@
-# Linear Algebra Visualizer for Machine Learning
+# ML Concepts Visualizer
 
-An interactive web application to help understand key linear algebra concepts from Andrew Ng's Deep Learning Specialization, focusing on multivariate regression, loss functions, and gradient descent.
+A professional interactive web application for visualizing and understanding key mathematical concepts in machine learning, focusing on vectors, multivariate regression, loss functions, and gradient descent.
 
-## Features
+![ML Concepts Visualizer Screenshot](assets/screenshot.png)
 
-### 1. Multivariate Linear Regression Visualization
+## Overview
 
-- Interactive 3D visualization of the regression plane for 2 features
-- Adjustable weights and bias parameters with real-time updates
-- Feature importance visualization for models with more than 2 features
-- Add or remove features to see how the model changes
+This tool helps students and practitioners build intuition for the mathematical foundations of machine learning through interactive visualizations. Whether you're studying Andrew Ng's Deep Learning Specialization or learning ML fundamentals on your own, these visualizations will help you develop a deeper understanding of the underlying concepts.
 
-### 2. Loss Function Visualization
+## Key Features
 
-- 3D surface plot of the Mean Squared Error (MSE) loss function
-- Contour plot showing the loss landscape
-- Interactive controls to adjust weights and bias
-- Real-time visualization of the regression line and errors
-- Table of data points used in the model
+### Vector Visualization
+- Interactive 3D visualization of vectors and vector operations
+- Real-time updates as you adjust vector components
+- Visualization of dot products, cross products, and vector projections
+- Toggle between 2D and 3D views
 
-### 3. Gradient Descent Visualization
+### Multivariate Regression
+- Interactive 3D visualization of regression planes
+- Real-time parameter adjustments
+- Feature importance visualization
+- Dynamic model updates when adding/removing features
 
-- Animated visualization of gradient descent optimization
-- Contour plot showing the path taken by gradient descent
-- Convergence plot showing how loss decreases over iterations
-- Adjustable learning rate and number of iterations
-- Detailed parameter table showing weights, gradients, and updates
-- Progress visualization of the regression line fitting the data
+### Loss Function Visualization
+- 3D surface plots of Mean Squared Error (MSE)
+- Interactive contour plots showing the loss landscape
+- Real-time visualization of regression line and errors
+- Customizable data points
 
-## How to Use
+### Gradient Descent Visualization
+- Animated optimization process
+- Path visualization on contour plots
+- Convergence graphs showing loss reduction
+- Adjustable learning rate and iterations
+- Detailed parameter tables showing weights, gradients, and updates
 
-1. **Open the application**: Simply open the `index.html` file in a modern web browser.
+## Usage Guide
 
-2. **Multivariate Regression**:
-   - Use the sliders to adjust weights and bias
-   - Add or remove features using the buttons
-   - Observe how the regression plane or line changes
+1. **Open the application**: Load the `index.html` file in any modern web browser
 
-3. **Loss Function**:
-   - Adjust the weight and bias sliders to see how the loss changes
-   - Observe the 3D loss surface and contour plot
-   - Generate new data points to see different loss landscapes
+2. **Vector Visualization**:
+   - Adjust vector components using the input fields
+   - Toggle between 2D and 3D views
+   - Explore vector operations in real-time
 
-4. **Gradient Descent**:
-   - Adjust the learning rate and number of iterations
-   - Click "Start Gradient Descent" to begin the animation
-   - Observe how the algorithm converges to the minimum
-   - Use the "Reset" button to start over
+3. **Multivariate Regression**:
+   - Adjust weights and bias using the sliders
+   - Add or remove features to see model changes
+   - Observe how the regression plane adapts
 
-## Technical Details
+4. **Loss Function**:
+   - Adjust parameters to see loss changes
+   - Explore the 3D loss surface
+   - Generate different data points to see how the loss landscape changes
 
-This application uses the following technologies:
+5. **Gradient Descent**:
+   - Set learning rate and iteration count
+   - Start the animation to see the optimization process
+   - Observe convergence behavior
+   - Reset to try different parameters
 
-- **HTML5/CSS3**: For structure and styling
-- **JavaScript**: For interactivity and calculations
-- **Bootstrap 5**: For responsive layout and UI components
-- **Plotly.js**: For interactive 3D and 2D visualizations
-- **D3.js**: For data manipulation and visualization
-- **Math.js**: For mathematical operations
-- **KaTeX**: For rendering mathematical equations
+## Technologies Used
+
+- **HTML5/CSS3**: Structure and styling
+- **JavaScript**: Core functionality and interactivity
+- **Bootstrap 5**: Responsive layout and UI components
+- **Plotly.js**: Interactive 3D and 2D visualizations
+- **D3.js**: Data manipulation and visualization
+- **Math.js**: Mathematical operations
+- **KaTeX**: Mathematical equation rendering
+- **Three.js**: 3D vector visualizations
 
 ## Learning Objectives
 
 This visualizer helps you understand:
 
-1. How multivariate linear regression works with multiple features
-2. How the Mean Squared Error loss function creates a surface in parameter space
-3. How gradient descent navigates this surface to find the minimum
-4. The relationship between model parameters, gradients, and learning rate
-5. How linear algebra concepts apply to machine learning algorithms
+1. Vector operations in 2D and 3D space
+2. How multivariate linear regression works with multiple features
+3. How loss functions create optimization surfaces
+4. How gradient descent navigates these surfaces to find optimal parameters
+5. The relationship between model parameters, gradients, and learning rates
 
-## Extending the Application
+## Future Enhancements
 
-You can extend this application by:
-
-1. Adding more loss functions (e.g., MAE, Huber loss)
-2. Implementing regularization (L1, L2)
-3. Adding more optimization algorithms (e.g., momentum, Adam)
-4. Implementing polynomial regression
-5. Adding classification models and their loss functions
-
-## Credits
-
-This application was created as a learning tool for students of Andrew Ng's Deep Learning Specialization and other machine learning courses.
+- Additional loss functions (MAE, Huber loss)
+- Regularization techniques (L1, L2)
+- Advanced optimization algorithms (momentum, Adam)
+- Polynomial regression
+- Classification models and decision boundaries
+- Neural network concept visualizations
 
 ## License
 

@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linear Algebra Visualizer</title>
+    <title>ML Concepts Visualizer | Interactive Learning Tool</title>
+    <meta name="description" content="An interactive tool for visualizing and understanding key machine learning concepts including vectors, regression, loss functions, and gradient descent.">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjs@11.5.0/lib/browser/math.min.js"></script>
@@ -15,42 +18,102 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Linear Algebra Visualizer</a>
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-braces me-2"></i>ML Concepts Visualizer
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#vector-visualization">Vector Visualization</a>
+                        <a class="nav-link" href="#vector-visualization"><i class="bi bi-arrow-up-right"></i>Vectors</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#regression">Multivariate Regression</a>
+                        <a class="nav-link" href="#regression"><i class="bi bi-graph-up"></i>Regression</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#loss-function">Loss Function</a>
+                        <a class="nav-link" href="#loss-function"><i class="bi bi-bullseye"></i>Loss Function</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#gradient-descent">Gradient Descent</a>
+                        <a class="nav-link" href="#gradient-descent"><i class="bi bi-arrow-down-circle"></i>Gradient Descent</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/sarang997/linear-algebra-visualizer" target="_blank">
+                            <i class="bi bi-github"></i>GitHub
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="text-center mb-4">Understanding Linear Algebra in Machine Learning</h1>
-                <p class="lead">
-                    This interactive visualization tool helps you understand key linear algebra concepts 
-                    from Andrew Ng's Deep Learning Specialization, focusing on vectors, multivariate regression, 
-                    loss functions, and gradient descent.
-                </p>
+    <header class="hero-section py-5 mb-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1>Visualizing Machine Learning Concepts</h1>
+                    <p class="lead">
+                        An interactive tool to help you understand key mathematical concepts in machine learning
+                        through visual exploration and hands-on experimentation.
+                    </p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="#vector-visualization" class="btn btn-light px-4">Get Started</a>
+                        <a href="https://github.com/sarang997/linear-algebra-visualizer" target="_blank" class="btn btn-outline-light px-4">View on GitHub</a>
+                    </div>
+                </div>
             </div>
         </div>
+    </header>
+
+    <div class="container">
+        <section id="introduction" class="mb-5">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="section-title mb-4">Understanding Mathematical Foundations of ML</h2>
+                            <p class="lead">
+                                This interactive visualization tool helps you understand key mathematical concepts 
+                                from machine learning, focusing on vectors, multivariate regression, 
+                                loss functions, and gradient descent.
+                            </p>
+                            <p>
+                                Whether you're studying Andrew Ng's Deep Learning Specialization or learning machine learning 
+                                fundamentals on your own, these visualizations will help you build intuition for the 
+                                mathematical concepts that underpin modern ML algorithms.
+                            </p>
+                            <div class="row mt-4 g-4">
+                                <div class="col-md-6">
+                                    <div class="feature-card p-4 rounded bg-light">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="icon-container me-3">
+                                                <i class="bi bi-arrow-up-right"></i>
+                                            </div>
+                                            <h3 class="h5 mb-0">Vector Operations</h3>
+                                        </div>
+                                        <p class="mb-0">Visualize vectors in 2D and 3D space, and understand operations like addition, dot products, and transformations.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="feature-card p-4 rounded bg-light">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="icon-container me-3">
+                                                <i class="bi bi-graph-up"></i>
+                                            </div>
+                                            <h3 class="h5 mb-0">Regression Analysis</h3>
+                                        </div>
+                                        <p class="mb-0">Explore how linear and multivariate regression models fit to data and make predictions.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="vector-visualization" class="mt-5">
             <div class="card">
@@ -236,9 +299,37 @@
         </section>
     </div>
 
-    <footer class="bg-dark text-white text-center py-3 mt-5">
+    <footer class="mt-5 pt-5">
         <div class="container">
-            <p class="mb-0">Linear Algebra Visualizer for Machine Learning Concepts</p>
+            <div class="row">
+                <div class="col-md-5 mb-4">
+                    <h3><i class="bi bi-braces me-2"></i>ML Concepts Visualizer</h3>
+                    <p>An interactive tool for visualizing and understanding key mathematical concepts in machine learning, helping students build intuition for the foundations of ML algorithms.</p>
+                </div>
+                <div class="col-md-7 mb-4">
+                    <h3>Learning Resources</h3>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <ul class="list-unstyled">
+                                <li><a href="https://www.coursera.org/specializations/deep-learning" target="_blank"><i class="bi bi-link-45deg me-1"></i>Deep Learning Specialization</a></li>
+                                <li><a href="https://www.3blue1brown.com/topics/linear-algebra" target="_blank"><i class="bi bi-link-45deg me-1"></i>3Blue1Brown Linear Algebra</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <ul class="list-unstyled">
+                                <li><a href="https://www.tensorflow.org/" target="_blank"><i class="bi bi-link-45deg me-1"></i>TensorFlow</a></li>
+                                <li><a href="https://pytorch.org/" target="_blank"><i class="bi bi-link-45deg me-1"></i>PyTorch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="copyright mb-0">&copy; 2023 ML Concepts Visualizer | <a href="https://github.com/sarang997/linear-algebra-visualizer" target="_blank">GitHub Repository</a></p>
+                </div>
+            </div>
         </div>
     </footer>
 

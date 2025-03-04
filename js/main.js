@@ -1,9 +1,12 @@
 /**
- * Main JavaScript file for the Linear Algebra Visualizer
+ * Main JavaScript file for the ML Concepts Visualizer
  */
 
 // Initialize all visualizations when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Add animation classes to elements
+    animateElementsOnLoad();
+    
     // Initialize the vector visualization
     initVectorVisualization();
     
@@ -16,8 +19,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize the gradient descent visualization
     initGradientDescentVisualization();
     
+    // Set the first nav link as active by default
+    const firstNavLink = document.querySelector('nav .nav-link:not([target="_blank"])');
+    if (firstNavLink) {
+        firstNavLink.classList.add('active');
+    }
+    
     // Add smooth scrolling for navigation links
-    document.querySelectorAll('nav a').forEach(anchor => {
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             
@@ -49,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
+        // Update active navigation link
         if (currentSection) {
             document.querySelectorAll('nav a').forEach(a => {
                 a.classList.remove('active');
@@ -56,6 +66,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     a.classList.add('active');
                 }
             });
+            
+            // Animate section elements when they come into view
+            animateSectionElements(currentSection);
         }
     });
     
@@ -87,15 +100,84 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Add tooltips for better user experience
-    addTooltips();
+    // Initialize tooltips
+    initTooltips();
     
-    // Set the first section as active by default
-    const firstNavLink = document.querySelector('nav a');
-    if (firstNavLink) {
-        firstNavLink.classList.add('active');
-    }
+    // Add event listeners for interactive elements
+    addEventListeners();
 });
+
+/**
+ * Animate elements when the page loads
+ */
+function animateElementsOnLoad() {
+    // Add fade-in-up animation to hero section elements
+    const heroElements = document.querySelectorAll('.hero-section h1, .hero-section .lead, .hero-section .btn');
+    heroElements.forEach((el, index) => {
+        el.classList.add('fade-in-up');
+        el.style.animationDelay = `${index * 0.2}s`;
+    });
+    
+    // Add fade-in-up animation to introduction section
+    const introElements = document.querySelectorAll('#introduction .card');
+    introElements.forEach((el, index) => {
+        el.classList.add('fade-in-up');
+        el.style.animationDelay = `${0.3 + index * 0.2}s`;
+    });
+}
+
+/**
+ * Animate section elements when they come into view
+ */
+function animateSectionElements(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+    
+    // Only animate elements that haven't been animated yet
+    const elementsToAnimate = section.querySelectorAll('.card:not(.animated), .visualization-container:not(.animated)');
+    elementsToAnimate.forEach((el, index) => {
+        el.classList.add('fade-in-up', 'animated');
+        el.style.animationDelay = `${index * 0.1}s`;
+    });
+}
+
+/**
+ * Initialize Bootstrap tooltips
+ */
+function initTooltips() {
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+}
+
+/**
+ * Add event listeners for interactive elements
+ */
+function addEventListeners() {
+    // Add hover effects for visualization containers
+    document.querySelectorAll('.visualization-container').forEach(container => {
+        container.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';
+        });
+        
+        container.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+        });
+    });
+    
+    // Add data-bs-toggle="tooltip" to all input elements
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.setAttribute('data-bs-toggle', 'tooltip');
+        input.setAttribute('data-bs-placement', 'top');
+        input.setAttribute('title', 'Adjust this value to see changes in the visualization');
+    });
+    
+    // Reinitialize tooltips after adding attributes
+    initTooltips();
+}
 
 // Add tooltips to various elements
 function addTooltips() {
