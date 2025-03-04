@@ -1,0 +1,223 @@
+/* Main Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Visualization Containers */
+.visualization-container {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+/* Equation Display */
+.equation-display {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 15px 0;
+    font-size: 1.2rem;
+    overflow-x: auto;
+    border-left: 4px solid #007bff;
+}
+
+/* Controls */
+.controls {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 15px;
+    border: 1px solid #ddd;
+}
+
+/* Parameter Controls */
+.parameter-control {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.parameter-control label {
+    width: 80px;
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+.parameter-control input {
+    flex-grow: 1;
+}
+
+.parameter-control .value {
+    width: 50px;
+    text-align: right;
+    margin-left: 10px;
+}
+
+/* Data Points */
+.data-point {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.data-point input {
+    width: 60px;
+    margin-right: 8px;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.highlight {
+    animation: pulse 1s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .visualization-container {
+        height: 250px;
+    }
+    
+    .equation-display {
+        font-size: 1rem;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Card styling */
+.card {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    border-bottom: none;
+}
+
+/* Button styling */
+.btn {
+    border-radius: 4px;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tooltip styling */
+.tooltip {
+    position: absolute;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* Axis styling for visualizations */
+.axis path,
+.axis line {
+    stroke: #ccc;
+}
+
+.axis text {
+    fill: #666;
+    font-size: 12px;
+}
+
+/* Legend styling */
+.legend {
+    font-size: 12px;
+}
+
+.legend rect {
+    stroke: #ccc;
+}
+
+/* Gradient descent path */
+.gradient-path {
+    stroke: #ff5722;
+    stroke-width: 2;
+    fill: none;
+}
+
+/* Contour plot styling */
+.contour {
+    stroke: #007bff;
+    stroke-opacity: 0.3;
+    fill: none;
+}
+
+/* Point styling */
+.point {
+    fill: #007bff;
+    stroke: #fff;
+    stroke-width: 1.5;
+}
+
+.current-point {
+    fill: #ff5722;
+    r: 6;
+}
+
+/* Convergence plot styling */
+.convergence-line {
+    stroke: #28a745;
+    stroke-width: 2;
+    fill: none;
+}
+
+/* Navbar styling */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer styling */
+footer {
+    margin-top: 50px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+} 

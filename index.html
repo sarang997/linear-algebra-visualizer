@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Algebra Visualizer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@11.5.0/lib/browser/math.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.16.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Linear Algebra Visualizer</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#vector-visualization">Vector Visualization</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#regression">Multivariate Regression</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#loss-function">Loss Function</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gradient-descent">Gradient Descent</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center mb-4">Understanding Linear Algebra in Machine Learning</h1>
+                <p class="lead">
+                    This interactive visualization tool helps you understand key linear algebra concepts 
+                    from Andrew Ng's Deep Learning Specialization, focusing on vectors, multivariate regression, 
+                    loss functions, and gradient descent.
+                </p>
+            </div>
+        </div>
+
+        <section id="vector-visualization" class="mt-5">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2>Vector Visualization</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Understanding Vectors</h3>
+                            <div id="vector-equation" class="equation-display"></div>
+                            <p>
+                                Vectors are fundamental to linear algebra and machine learning. They represent 
+                                quantities with both magnitude and direction. In machine learning, vectors often 
+                                represent features, weights, or gradients.
+                            </p>
+                            <div class="controls mt-4">
+                                <h4>Create and Manipulate Vectors</h4>
+                                <div class="mb-3">
+                                    <label class="form-label">Vector 1 (v₁)</label>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text">X</span>
+                                        <input type="number" class="form-control" id="vector1-x" value="1" step="0.5">
+                                        <span class="input-group-text">Y</span>
+                                        <input type="number" class="form-control" id="vector1-y" value="0" step="0.5">
+                                        <span class="input-group-text">Z</span>
+                                        <input type="number" class="form-control" id="vector1-z" value="0" step="0.5">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Vector 2 (v₂)</label>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text">X</span>
+                                        <input type="number" class="form-control" id="vector2-x" value="0" step="0.5">
+                                        <span class="input-group-text">Y</span>
+                                        <input type="number" class="form-control" id="vector2-y" value="1" step="0.5">
+                                        <span class="input-group-text">Z</span>
+                                        <input type="number" class="form-control" id="vector2-z" value="0" step="0.5">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="show-unit-vectors" checked>
+                                        <label class="form-check-label" for="show-unit-vectors">Show Unit Vectors</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="show-3d" checked>
+                                        <label class="form-check-label" for="show-3d">Show in 3D</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Vector Operations</label>
+                                    <div class="d-grid gap-2">
+                                        <button id="add-vectors" class="btn btn-outline-primary">Add Vectors (v₁ + v₂)</button>
+                                        <button id="subtract-vectors" class="btn btn-outline-primary">Subtract Vectors (v₁ - v₂)</button>
+                                        <button id="dot-product" class="btn btn-outline-primary">Dot Product (v₁ · v₂)</button>
+                                        <button id="cross-product" class="btn btn-outline-primary">Cross Product (v₁ × v₂)</button>
+                                    </div>
+                                </div>
+                                <div id="vector-result" class="alert alert-info d-none">
+                                    <strong>Result:</strong> <span id="vector-result-value"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="vector-visualization-container" class="visualization-container" style="height: 400px;"></div>
+                            <div id="vector-explanation" class="mt-3">
+                                <h4>What are vectors?</h4>
+                                <p>
+                                    Vectors are mathematical objects that have both magnitude (length) and direction. 
+                                    They are fundamental to linear algebra and machine learning.
+                                </p>
+                                <h5>Key Vector Operations:</h5>
+                                <ul>
+                                    <li><strong>Addition:</strong> Combining two vectors (tip-to-tail method)</li>
+                                    <li><strong>Subtraction:</strong> The difference between two vectors</li>
+                                    <li><strong>Dot Product:</strong> A scalar value representing how parallel two vectors are</li>
+                                    <li><strong>Cross Product:</strong> A vector perpendicular to both input vectors</li>
+                                </ul>
+                                <p>
+                                    In machine learning, vectors represent features, weights, and gradients. 
+                                    Understanding vector operations helps in grasping concepts like gradient descent.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="regression" class="mt-5">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2>Multivariate Linear Regression</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>The Model</h3>
+                            <div id="regression-equation" class="equation-display"></div>
+                            <p>
+                                In multivariate linear regression, we predict a target variable using multiple input features.
+                                The model is represented as a linear combination of features, where each feature has a weight.
+                            </p>
+                            <div class="controls mt-4">
+                                <h4>Adjust Parameters</h4>
+                                <div id="parameter-controls"></div>
+                                <button id="add-feature" class="btn btn-outline-primary mt-2">Add Feature</button>
+                                <button id="remove-feature" class="btn btn-outline-danger mt-2">Remove Feature</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="regression-visualization" class="visualization-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="loss-function" class="mt-5">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2>Loss Function</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Mean Squared Error (MSE)</h3>
+                            <div id="loss-equation" class="equation-display"></div>
+                            <p>
+                                The loss function measures how well our model is performing. For regression problems,
+                                we typically use Mean Squared Error (MSE), which calculates the average squared difference
+                                between predicted and actual values.
+                            </p>
+                            <div class="controls mt-4">
+                                <h4>Sample Data Points</h4>
+                                <div id="data-points-container"></div>
+                                <button id="generate-data" class="btn btn-outline-primary mt-2">Generate New Data</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="loss-visualization" class="visualization-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gradient-descent" class="mt-5 mb-5">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2>Gradient Descent</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Finding the Minimum</h3>
+                            <div id="gradient-equation" class="equation-display"></div>
+                            <p>
+                                Gradient descent is an optimization algorithm used to minimize the loss function.
+                                It works by iteratively adjusting the parameters in the direction of steepest descent.
+                            </p>
+                            <div class="controls mt-4">
+                                <div class="mb-3">
+                                    <label for="learning-rate" class="form-label">Learning Rate: <span id="learning-rate-value">0.1</span></label>
+                                    <input type="range" class="form-range" id="learning-rate" min="0.001" max="0.5" step="0.001" value="0.1">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="iterations" class="form-label">Iterations: <span id="iterations-value">100</span></label>
+                                    <input type="range" class="form-range" id="iterations" min="10" max="1000" step="10" value="100">
+                                </div>
+                                <button id="start-gradient-descent" class="btn btn-primary mt-2">Start Gradient Descent</button>
+                                <button id="reset-gradient-descent" class="btn btn-outline-secondary mt-2">Reset</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="gradient-visualization" class="visualization-container"></div>
+                            <div id="convergence-plot" class="visualization-container mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <div class="container">
+            <p class="mb-0">Linear Algebra Visualizer for Machine Learning Concepts</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/vectors.js"></script>
+    <script src="js/regression.js"></script>
+    <script src="js/loss.js"></script>
+    <script src="js/gradient.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 
